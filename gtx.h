@@ -46,6 +46,113 @@ void GeoProdutoporEscalar(vetor vA, double esc);
 //Função para realizar o Produto Escalar entre dois Vetores
 void GeoProdutoEscalar(vetor vA, vetor vB);
 
+//------------------------------------------------------
+
+//||| Funções com Vetores |||
+
+//Função para leitura de Vetor
+void GeoLerVetor(vetor *v){
+
+	//variavel de controle do for
+	int i;
+
+	//imprime uma mensagem na tela
+	printf("\nDigite o numero de elementos do Vetor: ");
+
+	//lê a qtd de elementos do vetor
+	scanf("%d", &v->n);
+
+	//inicio do for
+    for(i=0; i<v->n; i++){
+
+    	//pede pro usuário digitar o valor
+        printf("\nDigite o valor de v[%d]: ", i+1);
+
+        //lê o valor do elemento do vetor
+        scanf("%lf", &v->geovetor[i]);
+    }
+}
+
+//Função para somar dois Vetores
+void GeoSomarVetor(vetor vA, vetor vB){
+
+	//variavel de controle do for
+	int i;
+
+	//cria um vetor soma
+	double soma[vA.n];
+
+	//inicio do for
+	for(i = 0; i<vA.n; i++)
+
+	//calcula a soma e armazena no vetor
+	soma[i] = vA.geovetor[i] + vB.geovetor[i];
+
+	//imprime uma mensagem antes do inicio do vetor
+	printf("\nVetor resultante: ");
+
+	//inicio do for para imprimir
+	for(i = 0; i<vA.n; i++)
+
+		//imprime o vetor soma
+		printf("%.1lf ", soma[i]);
+    printf("\n");
+}
+
+//Função para realizar o Produto de um Escalar por um Vetor
+void GeoProdutoporEscalar(vetor vA, double esc){
+
+   //variavel de controle do for
+   int i;
+
+   //cria um vetor pra produto
+   double prod[vA.n];
+
+   //inicio do for
+   for(i=0;i<vA.n;i++)
+
+   //calcula o produto e armazena no vetor
+   prod[i] = vA.geovetor[i] * esc;
+
+   //imprime uma mensagem antes do inicio do vetor
+   printf("\nVetor resultante: ");
+
+   //inicio do for para imprimir
+	for(i = 0; i<vA.n; i++)
+
+		//imprime o vetor produto
+		printf("%.1lf ", prod[i]);
+    printf("\n");
+}
+
+//Função para realizar o Produto Escalar entre dois Vetores
+void GeoProdutoEscalar(vetor vA, vetor vB){
+
+	//variavel de controle do for
+	int i;
+
+	//cria um vetor pra produto
+	double prodVet[vA.n];
+
+	//cria uma variavel para armazenar a soma dos produtos
+	double soma=0;
+
+	//inicio do for
+	for(i = 0; i<vA.n; i++){
+
+		//realiza as multiplicações em cada indice do vetor
+		prodVet[i] = vA.geovetor[i] * vB.geovetor[i];
+
+		//soma os produtos
+		soma += prodVet[i];
+	}
+
+	//imprime o resultado
+	printf("\nProduto entre os vetores: %.1lf\n", soma);
+}
+
+
+
 //-----------------------------------------------------------------
 
 //  ||| Funções de retorno void com Matrizes |||
@@ -97,10 +204,13 @@ void LerMatrizes(matriz *m){
 
 	//inicio do for i
 	for(i = 0; i<m->ligne; i++){
+
 		//inicio do for j
 		for(j = 0; j<m->colonne; j++){
-			//pede pro usuario digitar o elemento [i][j] da matriz
+
+		//pede pro usuario digitar o elemento [i][j] da matriz
         	printf("\nDigite o valor do elemento [%d][%d]: ", i+1, j+1);
+
         	// lê o elemento [i][j] da matriz
         	scanf("%lf", &m->geomatriz[i][j]);
 		}
@@ -111,27 +221,27 @@ void LerMatrizes(matriz *m){
 //Função para imprimir Matrizes
 void ImprimeMatriz(matriz m){
 
-	//variaveis de controles do for
-	int i,j;
+    //variaveis de controles do for
+    int i,j;
 
    //printa uma linha de hifens
    puts("\n_______________________________________________");
 
-	//inicio do for i
-	for(i=0;i<m.ligne;i++){
+       //inicio do for i
+      for(i=0;i<m.ligne;i++){
 
-		//inicio do for j
+      //inicio do for j
       for(j=0;j<m.colonne;j++)
 
-      	//printa o elemento [i][j] da matriz
-      	printf("%.1lf  ", m.geomatriz[i][j]);
+      //printa o elemento [i][j] da matriz
+      printf("%.1lf  ", m.geomatriz[i][j]);
 
       //printa uma quebra de linha
       printf("\n");
     }
 
-    //printa uma linha de hifens
-    puts("__________________________________________________");
+      //printa uma linha de hifens
+      puts("__________________________________________________");
 }
 
 //Função para somar Matrizes
@@ -266,22 +376,26 @@ void GeoTransposta(matriz m, matriz *t){
     }
 }
 
-
 //Função para verificar se a matriz é simétrica
 void GeoMatrizSimetrica(matriz m, matriz t){
-	//variaveis de controle do for e uma variavel auxiliar inicializa como 0
-	int i, j, aux=0;
-	//testa se a matriz é quadrada
+	   //variaveis de controle do for e uma variavel auxiliar inicializa como 0
+	   int i, j, aux=0;
+
+	   //testa se a matriz é quadrada
 	if(m.ligne != m.colonne){
-   	//caso não seja, a matriz não é simetrica
-   	printf("\nMatriz nao e simetrica\n");
+
+   	 //caso não seja, a matriz não é simetrica
+   	 printf("\nMatriz nao e simetrica\n");
    }else{
+
    	//caso seja quadrada:
    	//inicio do for i
 		for(i = 0; i<m.ligne; i++){
 			//inicio do for j
+
 			for(j = 0; j<m.colonne; j++){
 				//se o elemento [i][j] da matriz for igual ao elemento [i][j] da sua transposta
+
 				if(m.geomatriz[i][j]==t.geomatriz[i][j])
       			//caso seja, soma 1 na variavel auxiliar
       			aux++;
@@ -289,115 +403,13 @@ void GeoMatrizSimetrica(matriz m, matriz t){
 		}
 		//testa se a variavel auxiliar é igual ao produto de linhas x colunas da matriz
 		if(aux==(m.ligne*m.ligne)){
+
 			//imprime que é simétrica
 			puts("\nA Matriz e simetrica");
 		}else{
+
 			//imprime que não é simétrica
 			puts("\nA Matriz nao e simetrica");
 		}
 	}
-}
-
-
-//||| Funções com Vetores |||
-
-//Função para leitura de Vetor
-void GeoLerVetor(vetor *v){
-
-	//variavel de controle do for
-	int i;
-
-	//imprime uma mensagem na tela
-	printf("\nDigite o numero de elementos do Vetor: ");
-
-	//lê a qtd de elementos do vetor
-	scanf("%d", &v->n);
-
-	//inicio do for
-    for(i=0; i<v->n; i++){
-
-    	//pede pro usuário digitar o valor
-        printf("\nDigite o valor de v[%d]: ", i+1);
-
-        //lê o valor do elemento do vetor
-        scanf("%lf", &v->geovetor[i]);
-    }
-}
-
-//Função para somar dois Vetores
-void GeoSomarVetor(vetor vA, vetor vB){
-
-	//variavel de controle do for
-	int i;
-
-	//cria um vetor soma
-	double soma[vA.n];
-
-	//inicio do for
-	for(i = 0; i<vA.n; i++)
-
-		//calcula a soma e armazena no vetor
-		soma[i] = vA.geovetor[i] + vB.geovetor[i];
-
-	//imprime uma mensagem antes do inicio do vetor
-	printf("\nVetor resultante: ");
-
-	//inicio do for para imprimir
-	for(i = 0; i<vA.n; i++)
-
-		//imprime o vetor soma
-		printf("%.1lf ", soma[i]);
-    printf("\n");
-}
-
-//Função para realizar o Produto de um Escalar por um Vetor
-void GeoProdutoporEscalar(vetor vA, double esc){
-
-   //variavel de controle do for
-	int i;
-
-	//cria um vetor pra produto
-   double prod[vA.n];
-
-   //inicio do for
-   for(i=0;i<vA.n;i++)
-
-   	//calcula o produto e armazena no vetor
-      prod[i] = vA.geovetor[i] * esc;
-
-   //imprime uma mensagem antes do inicio do vetor
-   printf("\nVetor resultante: ");
-
-   //inicio do for para imprimir
-	for(i = 0; i<vA.n; i++)
-
-		//imprime o vetor produto
-		printf("%.1lf ", prod[i]);
-    printf("\n");
-}
-
-//Função para realizar o Produto Escalar entre dois Vetores
-void GeoProdutoEscalar(vetor vA, vetor vB){
-
-	//variavel de controle do for
-	int i;
-
-	//cria um vetor pra produto
-	double prodVet[vA.n];
-
-	//cria uma variavel para armazenar a soma dos produtos
-	double soma=0;
-
-	//inicio do for
-	for(i = 0; i<vA.n; i++){
-
-		//realiza as multiplicações em cada indice do vetor
-		prodVet[i] = vA.geovetor[i] * vB.geovetor[i];
-
-		//soma os produtos
-		soma += prodVet[i];
-	}
-
-	//imprime o resultado
-	printf("\nProduto entre os vetores: %.1lf\n", soma);
 }
