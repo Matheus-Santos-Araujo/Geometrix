@@ -88,7 +88,7 @@ int main(){
 
         				case 4:
         					if(vA.n != vB.n)
-        						puts("Comando invalido! Os vetores nao possuem a mesma dimensao!");
+        						puts("Comando invalido! Os vetores nao possuem a mesma dimensao!\n");
         					else
         						GeoProdutoEscalar(vA, vB);
         					break;
@@ -100,7 +100,7 @@ int main(){
 
 
         				default:
-        					puts("\nComando invalido!");
+        					puts("\nComando invalido!\n");
         					break;
 					}
 				}while(EscolhaB != 5);
@@ -139,7 +139,7 @@ int main(){
 
     					case 2:
     						if(mA.ligne != mB.ligne || mA.colonne != mB.colonne)
-        						puts("\nComando inválido! As matrizes nao possuem a mesma dimensao");
+        						puts("\nComando inválido! As matrizes nao possuem a mesma dimensao\n");
         					else
         						GeoSomarMatrizes(mA, mB);
     						break;
@@ -147,7 +147,7 @@ int main(){
 
     					case 3:
     						if(mB.ligne != mA.colonne)
-    							puts("\nComando inválido! Nao e possivel realizar a multiplicacao");
+    							puts("\nComando inválido! Nao e possivel realizar a multiplicacao\n");
         					else
         						GeoMultiplicaMatriz(mA, mB);
 						    break;
@@ -157,7 +157,7 @@ int main(){
     						printf("\nDigite a matriz que deseja utilizar: ");
     						scanf("%d", &num);
     						if(num!=1 && num!=2){
-    							puts("\nOpcao Invalida");
+    							puts("\nOpcao Invalida\n");
     							break;
 							}else if(num==1)
 								GeoTransposta(mA, &tA);
@@ -167,23 +167,23 @@ int main(){
 
 
     					case 5:
-    						printf("\nDigite a matriz que deseja utilizar: ");
+              printf("\n*Especialidade Geometrix* -Pressione 1 para entrar no calculo de determinantes\n mais rapido e preciso da UECE: ");
     						scanf("%d", &num);
-    						if(num!=1 && num!=2){
+    						if(num!=1){
     							printf("\nComando inválido\n");
     							break;
 							}else if(num==1){
 								if(mA.ligne == mA.colonne)
 									determinante(mA);
 								else{
-									puts("\nComando inválido! Nao e possivel calcular o determinante");
+									puts("\nComando inválido! Nao e possivel calcular o determinante\n");
 									break;
 								}
 							}else{
 								if(mB.ligne == mB.colonne)
 									determinante(mB);
 								else{
-									puts("\nComando inválido! Nao e possivel calcular o determinante");
+									puts("\nComando inválido! Nao e possivel calcular o determinante\n");
 									break;
 								}
 							}
@@ -194,7 +194,7 @@ int main(){
     						printf("\nQual matriz voce deseja saber se e simetrica: ");
                                 scanf("%d", &num);
                                 if( num != 1 && num != 2){
-                                	puts("\nDigite uma opcao valida");
+                                	puts("\nDigite uma opcao valida\n");
                                 	break;
 								}else if(num == 1){
                                   GeoTransposta(mA,&tA);
@@ -210,10 +210,10 @@ int main(){
 
 
         	case 3:
-        		puts("\nGEOMETRIX, um oferecimento UECE, obrigado por utilizar nosso sistema volte sempre!");
+        		puts("\nGEOMETRIX, um oferecimento UECE, obrigado por utilizar nosso sistema volte sempre!\n");
         		break;
         	default:
-        		puts("\nOpcao Invalida");
+        		puts("\nComando Invalido\n");
         		break;
 		}
 
