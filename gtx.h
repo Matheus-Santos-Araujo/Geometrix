@@ -11,7 +11,7 @@ ____________________________________________________ */
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 100
+#define MAX 100 
 
 //Declaração das Structs
 
@@ -25,14 +25,16 @@ typedef struct{
 //struct de matriz
 
 typedef struct{
+	//linha
 	int ligne;
+	//coluna
 	int colonne;
 	double geomatriz[MAX][MAX];
 }matriz;
 
 //----------------------------------------------------
 
-// ||| Funções de retorno void com Vetores |||
+// ||| Funções de retorno void com Vetores (Prototipo) |||
 
 //Função para leitura de Vetor
 void GeoLerVetor(vetor *v);
@@ -155,7 +157,7 @@ void GeoProdutoEscalar(vetor vA, vetor vB){
 
 //-----------------------------------------------------------------
 
-//  ||| Funções de retorno void com Matrizes |||
+//  ||| Funções de retorno void com Matrizes (prototipo) |||
 
 //Função para criar e ler Matrizes
 void LerMatrizes(matriz *m);
@@ -171,7 +173,7 @@ void GeoMultiplicaMatriz(matriz mA, matriz mB);
 
 //Função para calcular determinante
 
-void determinante(matriz m);
+void determinante();
 
 //Função para calcular transposta
 
@@ -318,25 +320,84 @@ void GeoMultiplicaMatriz(matriz mA, matriz mB){
 
 //Função para calcular determinante
 
-void determinante(matriz m){
-
-	//caso o numero de linhas e colunas seja 1, imprime o único elemento
-	if(m.ligne==1)
-		printf("\nDeterminante da matriz [%d][%d]: %.1f", m.ligne,m.colonne, m.geomatriz[0][0]);
-
-	//caso o numero de linhas e colunas seja 2, imprime o determinante
-	else if(m.ligne==2)
-		printf("\nDeterminante da matriz [%d][%d]: %.1f", m.ligne,m.colonne, m.geomatriz[0][0]*m.geomatriz[1][1]-(m.geomatriz[0][1]*m.geomatriz[1][0]));
-
-	//caso o numero de linhas e colunas seja 3, imprime o determinante
-	else if(m.ligne==3){
-		double determinante;
-		determinante=(m.geomatriz[2][0]*m.geomatriz[0][1]*m.geomatriz[1][2]+m.geomatriz[0][0]*m.geomatriz[1][1]*m.geomatriz[2][2]+m.geomatriz[1][0]*m.geomatriz[2][1]*m.geomatriz[0][2]-m.geomatriz[2][2]*m.geomatriz[0][1]*m.geomatriz[1][0]-m.geomatriz[0][2]*m.geomatriz[1][1]*m.geomatriz[2][0]-m.geomatriz[1][2]*m.geomatriz[2][1]*m.geomatriz[0][0]);
-		printf("\nDeterminante da matriz [%d][%d]: %.1lf", m.ligne, m.colonne,determinante);
-	}else{
-		puts("\nNao e possivel calcular o determinante da matriz");
+void determinante()/*Calcular a Determinante de uma Matriz Quadrada*/
+	{
+	int m = 0;
+  double **a = 0;
+  int i = 0, j = 0, k = 0;
+  double factor = 0;
+  double temp = 0;
+  int count = 0;
+    	printf("\nDimensão da Matriz quadrada:");
+    	scanf("%d", &m);
+    	/* Função que aloca uma matriz*/
+    	a = malloc(m * sizeof(double *));
+    	for(i = 0; i < m; i++)
+    		{
+        		a[i] =  malloc(m * sizeof(double));
+    		}
+    	/* Entrar com o conteúdo da matriz*/
+    	printf("\nEntre com o Conteudo da Matriz\n\n");
+    	for(i = 0; i < m; i++)
+    		{
+        		for(j = 0; j < m; j++)
+        			{
+            			printf("A [%d][%d]=> ", i+1, j+1);
+            			scanf("%lf", &a[i][j]);
+        			}
+    		}
+    	/* Função que mostra a matriz*/
+    	printf("\nMatriz Digitada:\n\n");
+    	for(i = 0; i < m; i++)
+    		{
+        		for(j = 0; j < m; j++)
+        			{
+            			printf("%8.3f ", a[i][j]);
+        			}
+        		printf("\n");
+    		}
+    	/* Tranforma em triângulo para facilitar o calculo do determinante*/
+    	for(i = 0; i < m - 1; i++)
+    		{
+        		if(a[i][i] == 0)
+        			{
+            			for(k = i; k < m; k++)
+            				{
+                				if(a[k][i] != 0)
+                					{
+                    					for(j = 0; j < m; j++)
+                    						{
+                        						temp = a[i][j];
+                        						a[i][j] = a[k][j];
+                        						a[k][j] = temp;
+                    						}
+                    					k = m;
+                					}
+            				}
+            			count++;
+        			}
+        		if(a[i][i] != 0)
+        			{
+            			for(k = i + 1; k < m; k++)
+            				{
+                				factor = -1.0 * a[k][i] / a[i][i];
+                				for(j = i; j < m; j++)
+                					{
+                    					a[k][j] = a[k][j] + (factor * a[i][j]);
+                					}
+            				}
+        			}
+    		}
+    	temp = 1.0;
+    	/* A partir daqui é imprimido o determinate*/
+    	for(i = 0; i < m; i++)
+        temp *= a[i][i];
+    	printf("\nO valor do Determinante é:\n\n");
+    	if(count % 2 == 0)
+        printf("%8.3f \n", temp);
+    	else
+        printf("%8.3f \n", -1.0 * temp);
 	}
-}
 
 //Função para calcular transposta
 
