@@ -120,7 +120,7 @@ int main(){
         			puts("7 --> Voltar ao menu principal\n");
 							printf("Entre com sua opcao de escolha: ");
               scanf("%s",EscC);
-        			puts("_______________________________________________________\n");
+        			puts("            _______________________________________________________\n");
 
         			EscolhaC=atoi(EscC);
 
@@ -167,28 +167,12 @@ int main(){
 
 
     					case 5:
-              printf("\n*Especialidade Geometrix* -Pressione 1 para entrar no calculo de determinantes\n mais rapido e preciso da UECE: ");
-    						scanf("%d", &num);
-    						if(num!=1){
-    							printf("\nComando inválido\n");
-    							break;
-							}else if(num==1){
-								if(mA.ligne == mA.colonne)
+              printf("       **Especialidade Geometrix, calcule determinantes com velocidade** \n");
 									determinante(mA);
-								else{
-									puts("\nComando inválido! Nao e possivel calcular o determinante\n");
-									break;
-								}
-							}else{
-								if(mB.ligne == mB.colonne)
-									determinante(mB);
-								else{
-									puts("\nComando inválido! Nao e possivel calcular o determinante\n");
-									break;
-								}
-							}
-    						break;
+                                                                        break;
 
+									determinante(mB);
+                                                                        break;
 
     					case 6:
     						printf("\nQual matriz voce deseja saber se e simetrica: ");
