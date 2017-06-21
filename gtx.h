@@ -11,7 +11,7 @@ ____________________________________________________ */
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 100 
+#define MAX 100
 
 //Declaração das Structs
 
@@ -320,7 +320,8 @@ void GeoMultiplicaMatriz(matriz mA, matriz mB){
 
 //Função para calcular determinante
 
-void determinante()/*Calcular a Determinante de uma Matriz Quadrada*/
+//Calcula a Determinante de uma Matriz Quadrada
+void determinante()
 	{
 	int m = 0;
   double **a = 0;
@@ -328,15 +329,17 @@ void determinante()/*Calcular a Determinante de uma Matriz Quadrada*/
   double factor = 0;
   double temp = 0;
   int count = 0;
-    	printf("\nDimensão da Matriz quadrada:");
+    	printf("\nDimensão da Matriz quadrada: ");
     	scanf("%d", &m);
-    	/* Função que aloca uma matriz*/
+
+    	//Função que aloca uma matriz
     	a = malloc(m * sizeof(double *));
     	for(i = 0; i < m; i++)
     		{
         		a[i] =  malloc(m * sizeof(double));
     		}
-    	/* Entrar com o conteúdo da matriz*/
+
+    	//Entra com o conteúdo da matriz
     	printf("\nEntre com o Conteudo da Matriz\n\n");
     	for(i = 0; i < m; i++)
     		{
@@ -346,8 +349,9 @@ void determinante()/*Calcular a Determinante de uma Matriz Quadrada*/
             			scanf("%lf", &a[i][j]);
         			}
     		}
-    	/* Função que mostra a matriz*/
-    	printf("\nMatriz Digitada:\n\n");
+
+    	//Função que mostra a matriz
+    	printf("\nSua Matriz:\n\n");
     	for(i = 0; i < m; i++)
     		{
         		for(j = 0; j < m; j++)
@@ -356,7 +360,8 @@ void determinante()/*Calcular a Determinante de uma Matriz Quadrada*/
         			}
         		printf("\n");
     		}
-    	/* Tranforma em triângulo para facilitar o calculo do determinante*/
+
+    	//Tranforma em triângulo para facilitar o calculo do determinante
     	for(i = 0; i < m - 1; i++)
     		{
         		if(a[i][i] == 0)
@@ -389,7 +394,8 @@ void determinante()/*Calcular a Determinante de uma Matriz Quadrada*/
         			}
     		}
     	temp = 1.0;
-    	/* A partir daqui é imprimido o determinate*/
+
+    	//impressão do determinate
     	for(i = 0; i < m; i++)
         temp *= a[i][i];
     	printf("\nO valor do Determinante é:\n\n");
