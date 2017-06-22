@@ -172,11 +172,9 @@ void GeoSomarMatrizes(matriz mA, matriz mB);
 void GeoMultiplicaMatriz(matriz mA, matriz mB);
 
 //Função para calcular determinante
-
 void determinante();
 
 //Função para calcular transposta
-
 void GeoTransposta(matriz m, matriz *t);
 
 //Função para verificar se a matriz é simétrica
